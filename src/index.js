@@ -1,7 +1,7 @@
 import { Children, useLayoutEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
-const Portal = (props) => {
+const DocumentPortal = (props) => {
   const child = Children.only(props.children);
   const nodeRef = useRef(document.createElement('div'));
 
@@ -14,4 +14,4 @@ const Portal = (props) => {
   return createPortal(child, nodeRef.current);
 };
 
-export default Portal;
+export default DocumentPortal;
