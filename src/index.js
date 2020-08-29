@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Children, useLayoutEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -12,6 +13,10 @@ const DocumentPortal = (props) => {
   }, []);
 
   return createPortal(child, nodeRef.current);
+};
+
+DocumentPortal.propTypes = {
+  children: PropTypes.element.isRequired,
 };
 
 export default DocumentPortal;
