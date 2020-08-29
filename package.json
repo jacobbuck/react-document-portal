@@ -1,0 +1,26 @@
+{
+  "name": "react-document-portal",
+  "version": "0.0.1",
+  "description": "React component which renders its children inside a portal attached to the document.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jacobbuck/react-document-portal.git"
+  },
+  "keywords": [
+    "react",
+    "component",
+    "portal",
+    "document",
+    "body"
+  ],
+  "author": "Jacob Buck <buck.jacob@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jacobbuck/react-document-portal/issues"
+  },
+  "homepage": "https://github.com/jacobbuck/react-document-portal#readme"
+}
