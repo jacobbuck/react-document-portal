@@ -17,7 +17,7 @@ const nodeRef = useRef(null);
     return () => document.body.removeChild(nodeRef.current);
   }, []);
 
-  return ReactDOM.createPortal(child, nodeRef.current);
+  return nodeRef.current ? ReactDOM.createPortal(child, nodeRef.current) : null;
 };
 
 DocumentPortal.propTypes = {
