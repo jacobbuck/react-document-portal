@@ -5,7 +5,7 @@ import useIsomorphicLayoutEffect from 'use-isomorphic-layout-effect';
 
 const DocumentPortal = (props) => {
   const child = React.Children.only(props.children);
-const nodeRef = useRef(null);
+  const nodeRef = useRef(null);
 
   useIsomorphicLayoutEffect(() => {
     if (nodeRef.current === null) {
