@@ -14,7 +14,10 @@ const nodeRef = useRef(null);
 
     document.body.appendChild(nodeRef.current);
 
-    return () => document.body.removeChild(nodeRef.current);
+    return () => {
+      document.body.removeChild(nodeRef.current);
+      nodeRef.current = null;
+    };
   }, []);
 
   return nodeRef.current ? ReactDOM.createPortal(child, nodeRef.current) : null;
