@@ -2,7 +2,7 @@
   "name": "react-document-portal",
   "version": "0.0.1",
   "description": "React component which renders its children inside a portal attached to the document.",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "jest"
   },
@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/jacobbuck/react-document-portal/issues"
   },
-  "homepage": "https://github.com/jacobbuck/react-document-portal#readme"
+  "homepage": "https://github.com/jacobbuck/react-document-portal#readme",
+  "dependencies": {
+    "prop-types": "^15.7.2"
+  }
 }
