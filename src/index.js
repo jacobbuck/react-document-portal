@@ -5,12 +5,16 @@ import useIsomorphicLayoutEffect from 'use-isomorphic-layout-effect';
 
 const DocumentPortal = (props) => {
   const child = React.Children.only(props.children);
-  const nodeRef = useRef(document.createElement('div'));
+const nodeRef = useRef(null);
 
   useIsomorphicLayoutEffect(() => {
-    const node = nodeRef.current;
-    document.body.appendChild(node);
-    return () => document.body.removeChild(node);
+    if (nodeRef.current === null) {
+      nodeRef.current = document.createElement('div');
+    }
+
+    document.body.appendChild(nodeRef.current);
+
+    return () => document.body.removeChild(nodeRef.current);
   }, []);
 
   return ReactDOM.createPortal(child, nodeRef.current);
