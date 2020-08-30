@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 const DocumentPortal = (props) => {
-  const child = React.Children.only(props.children);
   const [node, setNode] = useState();
 
   useEffect(() => {
@@ -19,11 +18,15 @@ const DocumentPortal = (props) => {
     }
   }, [node]);
 
-  return node ? ReactDOM.createPortal(child, node) : null;
+  return node ? ReactDOM.createPortal(props.children, node) : null;
+};
+
+DocumentPortal.defaultProps = {
+  children: null,
 };
 
 DocumentPortal.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node,
 };
 
 export default DocumentPortal;
