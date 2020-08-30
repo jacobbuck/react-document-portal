@@ -6,11 +6,6 @@ export default {
     { file: 'lib/index.cjs.js', format: 'cjs', exports: 'default' },
     { file: 'lib/index.esm.js', format: 'esm' },
   ],
-  external: [
-    'prop-types',
-    'react',
-    'react-dom',
-    'use-isomorphic-layout-effect',
-  ],
+  external: ['prop-types', 'react', 'react-dom'],
   plugins: [babel({ babelHelpers: 'bundled' })],
 };
