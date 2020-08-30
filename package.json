@@ -4,6 +4,7 @@
   "description": "React component which renders its children inside a portal attached to the document.",
   "main": "lib/index.js",
   "scripts": {
+    "build": "rollup -c",
     "format": "prettier --write .",
     "test": "jest"
   },
@@ -29,12 +30,17 @@
     "use-isomorphic-layout-effect": "^1.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "@rollup/plugin-babel": "^5.2.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.13",
-    "prettier": "^2.1.1"
+    "prettier": "^2.1.1",
+    "rollup": "^2.26.8"
   },
   "peerDependencies": {
     "react": "^16.8.0",
-    "react-dom": "^16.8.0",
+    "react-dom": "^16.8.0"
   }
 }
