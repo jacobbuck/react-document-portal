@@ -35,7 +35,6 @@ test('removes element from document body element unmount', () => {
 });
 
 test('does not render on server', () => {
-  React.useLayoutEffect = React.useEffect;
   expect(ReactDOMServer.renderToString(<TestComponent />)).not.toContain(
     'data-testid="dialog"'
   );
