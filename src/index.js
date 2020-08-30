@@ -1,26 +1,25 @@
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import useIsomorphicLayoutEffect from 'use-isomorphic-layout-effect';
 
 const DocumentPortal = (props) => {
   const child = React.Children.only(props.children);
-  const nodeRef = useRef(null);
+  const [node, setNode] = useState();
 
-  useIsomorphicLayoutEffect(() => {
-    if (nodeRef.current === null) {
-      nodeRef.current = document.createElement('div');
-    }
-
-    document.body.appendChild(nodeRef.current);
-
-    return () => {
-      document.body.removeChild(nodeRef.current);
-      nodeRef.current = null;
-    };
+  useEffect(() => {
+    setNode((node) => node || document.createElement('div'));
   }, []);
 
-  return nodeRef.current ? ReactDOM.createPortal(child, nodeRef.current) : null;
+  useEffect(() => {
+    if (node) {
+      document.body.appendChild(node);
+      return () => {
+        document.body.removeChild(node);
+      };
+    }
+  }, [node]);
+
+  return node ? ReactDOM.createPortal(child, node) : null;
 };
 
 DocumentPortal.propTypes = {
