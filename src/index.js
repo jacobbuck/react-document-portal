@@ -25,8 +25,10 @@ DocumentPortal.defaultProps = {
   children: null,
 };
 
-DocumentPortal.propTypes = {
-  children: PropTypes.node,
-};
+if (process.env.NODE_ENV !== 'production') {
+  DocumentPortal.propTypes = {
+    children: PropTypes.node,
+  };
+}
 
 export default DocumentPortal;
