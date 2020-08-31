@@ -13,7 +13,7 @@ const DocumentPortal = (props) => {
     if (node) {
       document.body.appendChild(node);
       return () => {
-        document.body.removeChild(node);
+        node.parentNode.removeChild(node);
       };
     }
   }, [node]);
