@@ -25,7 +25,8 @@
     "component",
     "portal",
     "document",
-    "body"
+    "body",
+    "ssr"
   ],
   "author": "Jacob Buck <buck.jacob@gmail.com>",
   "license": "MIT",
