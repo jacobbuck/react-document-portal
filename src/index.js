@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 
-const DocumentPortal = (props) => {
+const DocumentPortal = ({ children = null }) => {
   const [node, setNode] = useState();
 
   useEffect(() => {
@@ -18,11 +18,7 @@ const DocumentPortal = (props) => {
     }
   }, [node]);
 
-  return node ? ReactDOM.createPortal(props.children, node) : null;
-};
-
-DocumentPortal.defaultProps = {
-  children: null,
+  return node ? ReactDOM.createPortal(children, node) : null;
 };
 
 if (process.env.NODE_ENV !== 'production') {
