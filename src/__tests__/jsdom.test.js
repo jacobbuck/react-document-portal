@@ -1,6 +1,8 @@
+/**
+ * @jest-environment jsdom
+ */
 import { render } from '@testing-library/react';
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
+import * as React from 'react';
 import DocumentPortal from '..';
 
 const TestComponent = () => (
@@ -32,10 +34,4 @@ test('removes element from document body element unmount', () => {
   unmount();
   expect(parentElement).not.toBeInTheDocument();
   expect(targetElement).not.toBeInTheDocument();
-});
-
-test('does not render on server', () => {
-  expect(ReactDOMServer.renderToString(<TestComponent />)).not.toContain(
-    'data-testid="dialog"'
-  );
 });
