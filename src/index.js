@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import ReactDOM from 'react-dom';
+import { createPortal } from 'react-dom';
 import useIsomorphicLayoutEffect from 'use-isomorphic-layout-effect';
 
 const DocumentPortal = ({ children = null }) => {
@@ -19,7 +19,7 @@ const DocumentPortal = ({ children = null }) => {
     }
   }, [node]);
 
-  return node ? ReactDOM.createPortal(children, node) : null;
+  return node ? createPortal(children, node) : null;
 };
 
 if (process.env.NODE_ENV !== 'production') {
