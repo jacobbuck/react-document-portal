@@ -1,9 +1,13 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import useIsomorphicLayoutEffect from 'use-isomorphic-layout-effect';
+import updateRef from './updateRef';
 
-const DocumentPortal = ({ children = null }) => {
+const DocumentPortal = forwardRef(function DocumentPortal(
+  { children = null },
+  ref
+) {
   const [node, setNode] = useState();
 
   useIsomorphicLayoutEffect(() => {
@@ -19,8 +23,17 @@ const DocumentPortal = ({ children = null }) => {
     }
   }, [node]);
 
+  useIsomorphicLayoutEffect(() => {
+    if (ref) {
+      updateRef(ref, node);
+      return () => {
+        updateRef(ref, null);
+      };
+    }
+  }, [node, ref]);
+
   return node ? createPortal(children, node) : null;
-};
+});
 
 if (process.env.NODE_ENV !== 'production') {
   DocumentPortal.propTypes = {
