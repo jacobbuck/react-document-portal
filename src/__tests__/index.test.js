@@ -32,3 +32,44 @@ test('removes element from document body element unmount', () => {
   expect(parentElement).not.toBeInTheDocument();
   expect(targetElement).not.toBeInTheDocument();
 });
+
+test('updates function refs', () => {
+  const ref = jest.fn();
+  const { getByTestId, unmount } = render(
+    <DocumentPortal ref={ref}>
+      <dialog data-testid="dialog">Hello!</dialog>
+    </DocumentPortal>
+  );
+  expect(ref).toHaveBeenLastCalledWith(getByTestId('dialog').parentNode);
+  unmount();
+  expect(ref).toHaveBeenLastCalledWith(null);
+});
+
+test('updates object refs', () => {
+  const ref = React.createRef();
+  const { getByTestId, unmount } = render(
+    <DocumentPortal ref={ref}>
+      <dialog data-testid="dialog">Hello!</dialog>
+    </DocumentPortal>
+  );
+  expect(ref).toHaveProperty('current', getByTestId('dialog').parentNode);
+  unmount();
+  expect(ref).toHaveProperty('current', null);
+});
+
+test('handles changed ref', () => {
+  const ref1 = jest.fn();
+  const { getByTestId, rerender } = render(
+    <DocumentPortal ref={ref1}>
+      <dialog data-testid="dialog">Hello!</dialog>
+    </DocumentPortal>
+  );
+  const ref2 = React.createRef();
+  rerender(
+    <DocumentPortal ref={ref2}>
+      <dialog data-testid="dialog">Hello!</dialog>
+    </DocumentPortal>
+  );
+  expect(ref1).toHaveBeenLastCalledWith(null);
+  expect(ref2).toHaveProperty('current', getByTestId('dialog').parentNode);
+});
