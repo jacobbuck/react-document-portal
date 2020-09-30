@@ -1,4 +1,4 @@
-import { createRef } from 'react';
+import * as React from 'react';
 import updateRef from '../updateRef';
 
 test('handles function refs', () => {
@@ -9,7 +9,7 @@ test('handles function refs', () => {
 });
 
 test('handles object refs', () => {
-  const ref = createRef();
+  const ref = React.createRef();
   const value = { foo: 'bar' };
   updateRef(ref, value);
   expect(ref).toMatchObject({ current: value });
