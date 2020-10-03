@@ -11,7 +11,7 @@ const DocumentPortal = forwardRef(function DocumentPortal(
   const [node, setNode] = useState();
 
   useIsomorphicLayoutEffect(() => {
-    setNode((node) => node || document.createElement('div'));
+    setNode(document.createElement('div'));
   }, []);
 
   useIsomorphicLayoutEffect(() => {
