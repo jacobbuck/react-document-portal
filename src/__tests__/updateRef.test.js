@@ -12,10 +12,10 @@ test('handles object refs', () => {
   const ref = React.createRef();
   const value = { foo: 'bar' };
   updateRef(ref, value);
-  expect(ref).toMatchObject({ current: value });
+  expect(ref).toHaveProperty('current', value);
 });
 
-test('doesn‘t throw when passed an invalid ref', () => {
+test('doesn’t throw when passed an invalid ref', () => {
   expect(() => {
     const value = { foo: 'bar' };
     updateRef(null, value);
