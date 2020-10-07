@@ -8,7 +8,7 @@ const DocumentPortal = forwardRef(function DocumentPortal(
   { as = 'div', children = null },
   ref
 ) {
-  const [node, setNode] = useState();
+  const [node, setNode] = useState(null);
 
   useIsomorphicLayoutEffect(() => {
     setNode(document.createElement(as));
