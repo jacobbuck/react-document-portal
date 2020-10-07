@@ -5,14 +5,14 @@ import useIsomorphicLayoutEffect from 'use-isomorphic-layout-effect';
 import updateRef from './updateRef';
 
 const DocumentPortal = forwardRef(function DocumentPortal(
-  { children = null },
+  { as = 'div', children = null },
   ref
 ) {
   const [node, setNode] = useState();
 
   useIsomorphicLayoutEffect(() => {
-    setNode(document.createElement('div'));
-  }, []);
+    setNode(document.createElement(as));
+  }, [as]);
 
   useIsomorphicLayoutEffect(() => {
     if (node) {
@@ -37,6 +37,7 @@ const DocumentPortal = forwardRef(function DocumentPortal(
 
 if (process.env.NODE_ENV !== 'production') {
   DocumentPortal.propTypes = {
+    as: PropTypes.string,
     children: PropTypes.node,
   };
 }
