@@ -32,7 +32,7 @@ const DocumentPortal = forwardRef(function DocumentPortal(
     }
   }, [node, ref]);
 
-  return node ? createPortal(children, node) : null;
+  return node && createPortal(children, node);
 });
 
 if (process.env.NODE_ENV !== 'production') {
