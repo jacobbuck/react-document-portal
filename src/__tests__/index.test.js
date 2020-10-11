@@ -73,3 +73,12 @@ test('handles changed ref', () => {
   expect(ref1).toHaveBeenLastCalledWith(null);
   expect(ref2).toHaveProperty('current', getByTestId('dialog').parentNode);
 });
+
+test('propTypes aren’t set in production', () => {
+  const env = process.env;
+  process.env = { NODE_ENV: 'production' };
+  jest.resetModules();
+  expect(require('..').default).not.toHaveProperty('propTypes');
+  process.env = env;
+  jest.resetModules();
+});
