@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Added
+
+- Added `as` prop for defining the tag name of the portal's containing element.
+- Added support for refs.
+
 ### Removed
 
 - Removed `defaultProps` in favour of default values in object destructuring.
