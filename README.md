@@ -15,6 +15,7 @@ React component which renders its children inside a portal attached to the docum
 
 ### Props
 
+- `as` tagName string used to create portal container, defaults to `"div"`.
 - `children` any elements to render inside a portal.
 
 ## Requirements
