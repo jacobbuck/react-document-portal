@@ -17,8 +17,9 @@ test('renders child inside portal', () => {
 });
 
 test('renders without children', () => {
-  const { baseElement } = render(<DocumentPortal />);
-  expect(baseElement.lastChild.tagName).toBe('DIV');
+  const ref = React.createRef();
+  const { baseElement } = render(<DocumentPortal ref={ref} />);
+  expect(baseElement).toContainElement(ref.current);
 });
 
 test('appends element to document body element on mount', () => {
