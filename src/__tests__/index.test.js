@@ -16,6 +16,11 @@ test('renders child inside portal', () => {
   expect(dialogElement.parentNode.tagName).toBe('DIV');
 });
 
+test('renders without children', () => {
+  const { baseElement } = render(<DocumentPortal />);
+  expect(baseElement.lastChild.tagName).toBe('DIV');
+});
+
 test('appends element to document body element on mount', () => {
   const { baseElement, getByTestId } = render(
     <DocumentPortal>
