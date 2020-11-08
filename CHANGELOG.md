@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- Bumped up version of [use-isomorphic-layout-effect](https://www.npmjs.com/package/use-isomorphic-layout-effect) to v1.1.0.
+
 ## v1.1.0 - 2020-10-18
 
 ### Added
