@@ -35,11 +35,9 @@ const DocumentPortal = forwardRef(function DocumentPortal(
   return node && createPortal(children, node);
 });
 
-if (process.env.NODE_ENV !== 'production') {
-  DocumentPortal.propTypes = {
-    as: PropTypes.string,
-    children: PropTypes.node,
-  };
-}
+DocumentPortal.propTypes = {
+  as: PropTypes.string,
+  children: PropTypes.node,
+};
 
 export default DocumentPortal;
