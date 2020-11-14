@@ -35,7 +35,7 @@ const DocumentPortal = forwardRef(function DocumentPortal(
   return node && createPortal(children, node);
 });
 
-DocumentPortal.propTypes = {
+DocumentPortal.propTypes /* remove-proptypes */ = {
   as: PropTypes.string,
   children: PropTypes.node,
 };
