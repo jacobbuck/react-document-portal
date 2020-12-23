@@ -76,9 +76,9 @@ test('updates object refs', () => {
       <dialog data-testid="dialog">Hello!</dialog>
     </DocumentPortal>
   );
-  expect(ref).toHaveProperty('current', getByTestId('dialog').parentNode);
+  expect(ref.current).toBe(getByTestId('dialog').parentNode);
   unmount();
-  expect(ref).toHaveProperty('current', null);
+  expect(ref.current).toBe(null);
 });
 
 test('handles changed ref', () => {
@@ -95,5 +95,5 @@ test('handles changed ref', () => {
     </DocumentPortal>
   );
   expect(ref1).toHaveBeenLastCalledWith(null);
-  expect(ref2).toHaveProperty('current', getByTestId('dialog').parentNode);
+  expect(ref2.current).toBe(getByTestId('dialog').parentNode);
 });
