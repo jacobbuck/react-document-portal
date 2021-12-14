@@ -14,6 +14,9 @@
   ],
   "parser": "@babel/eslint-parser",
   "plugins": ["jest", "prettier", "react", "react-hooks"],
+  "rules": {
+    "react/display-name": "off"
+  },
   "settings": {
     "react": {
       "version": "detect"

@@ -4,10 +4,7 @@ import { createPortal } from 'react-dom';
 import useIsomorphicLayoutEffect from 'use-isomorphic-layout-effect';
 import updateRef from './updateRef';
 
-const DocumentPortal = forwardRef(function DocumentPortal(
-  { as = 'div', children = null },
-  ref
-) {
+const DocumentPortal = forwardRef(({ as = 'div', children = null }, ref) => {
   const [node, setNode] = useState(null);
 
   useIsomorphicLayoutEffect(() => {
