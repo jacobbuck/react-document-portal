@@ -1,5 +1,8 @@
+/**
+ * @jest-environment jsdom
+ */
 import { render } from '@testing-library/react';
-import * as React from 'react';
+import { createRef } from 'react';
 import DocumentPortal from '..';
 
 test('renders child inside portal', () => {
@@ -17,7 +20,7 @@ test('renders child inside portal', () => {
 });
 
 test('renders without children', () => {
-  const ref = React.createRef();
+  const ref = createRef();
   const { baseElement } = render(<DocumentPortal ref={ref} />);
   expect(baseElement).toContainElement(ref.current);
 });
@@ -70,7 +73,7 @@ test('updates function refs', () => {
 });
 
 test('updates object refs', () => {
-  const ref = React.createRef();
+  const ref = createRef();
   const { getByTestId, unmount } = render(
     <DocumentPortal ref={ref}>
       <dialog data-testid="dialog">Hello!</dialog>
@@ -88,7 +91,7 @@ test('handles changed ref', () => {
       <dialog data-testid="dialog">Hello!</dialog>
     </DocumentPortal>
   );
-  const ref2 = React.createRef();
+  const ref2 = createRef();
   rerender(
     <DocumentPortal ref={ref2}>
       <dialog data-testid="dialog">Hello!</dialog>
