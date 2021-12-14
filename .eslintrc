@@ -16,7 +16,7 @@
   "plugins": ["jest", "prettier", "react", "react-hooks"],
   "settings": {
     "react": {
-      "version": "16.8.0"
+      "version": "detect"
     }
   }
 }
