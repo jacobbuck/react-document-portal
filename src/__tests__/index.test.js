@@ -1,92 +1,99 @@
 /**
  * @jest-environment jsdom
  */
-import { render } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { createRef } from 'react';
 import DocumentPortal from '..';
 
-test('renders child inside portal', () => {
-  const { getByTestId } = render(
+test('renders child inside portal', async () => {
+  render(
     <main data-testid="main">
       <DocumentPortal>
         <dialog data-testid="dialog">Hello!</dialog>
       </DocumentPortal>
     </main>
   );
-  const dialogElement = getByTestId('dialog');
-  expect(getByTestId('main')).not.toContainElement(dialogElement);
+  const dialogElement = await screen.findByTestId('dialog');
+  expect(screen.getByTestId('main')).not.toContainElement(dialogElement);
   expect(dialogElement).toBeInTheDocument();
   expect(dialogElement.parentNode.tagName).toBe('DIV');
 });
 
-test('renders without children', () => {
+test('renders without children', async () => {
   const ref = createRef();
   const { baseElement } = render(<DocumentPortal ref={ref} />);
-  expect(baseElement).toContainElement(ref.current);
+  await waitFor(() => {
+    expect(baseElement).toContainElement(ref.current);
+  });
 });
 
-test('appends element to document body element on mount', () => {
-  const { baseElement, getByTestId } = render(
+test('appends element to document body element on mount', async () => {
+  const { baseElement } = render(
     <DocumentPortal>
       <dialog data-testid="dialog">Hello!</dialog>
     </DocumentPortal>
   );
-  expect(baseElement.lastChild).toBe(getByTestId('dialog').parentNode);
+  const dialogElement = await screen.findByTestId('dialog');
+  expect(baseElement.lastChild).toBe(await dialogElement.parentNode);
 });
 
-test('removes element from document body element unmount', () => {
-  const { getByTestId, unmount } = render(
+test('removes element from document body element unmount', async () => {
+  const { unmount } = render(
     <DocumentPortal>
       <dialog data-testid="dialog">Hello!</dialog>
     </DocumentPortal>
   );
-  const targetElement = getByTestId('dialog');
+  const targetElement = await screen.findByTestId('dialog');
   unmount();
   expect(targetElement).not.toBeInTheDocument();
 });
 
-test('uses `as` prop for portal container tagName', () => {
-  const { getByTestId, rerender } = render(
+test('uses `as` prop for portal container tagName', async () => {
+  const { rerender } = render(
     <DocumentPortal as="aside">
       <dialog data-testid="dialog">Hello!</dialog>
     </DocumentPortal>
   );
-  expect(getByTestId('dialog').parentNode.tagName).toBe('ASIDE');
+  let dialogElement = await screen.findByTestId('dialog');
+  expect(dialogElement.parentNode.tagName).toBe('ASIDE');
   rerender(
     <DocumentPortal as="span">
       <dialog data-testid="dialog">Hello!</dialog>
     </DocumentPortal>
   );
-  expect(getByTestId('dialog').parentNode.tagName).toBe('SPAN');
+  dialogElement = await screen.findByTestId('dialog');
+  expect(dialogElement.parentNode.tagName).toBe('SPAN');
 });
 
-test('updates function refs', () => {
+test('updates function refs', async () => {
   const ref = jest.fn();
-  const { getByTestId, unmount } = render(
+  const { unmount } = render(
     <DocumentPortal ref={ref}>
       <dialog data-testid="dialog">Hello!</dialog>
     </DocumentPortal>
   );
-  expect(ref).toHaveBeenLastCalledWith(getByTestId('dialog').parentNode);
+  const dialogElement = await screen.findByTestId('dialog');
+  expect(ref).toHaveBeenLastCalledWith(dialogElement.parentNode);
   unmount();
   expect(ref).toHaveBeenLastCalledWith(null);
 });
 
-test('updates object refs', () => {
+test('updates object refs', async () => {
   const ref = createRef();
-  const { getByTestId, unmount } = render(
+  const { unmount } = render(
     <DocumentPortal ref={ref}>
       <dialog data-testid="dialog">Hello!</dialog>
     </DocumentPortal>
   );
-  expect(ref.current).toBe(getByTestId('dialog').parentNode);
+  const dialogElement = await screen.findByTestId('dialog');
+  expect(ref.current).toBe(dialogElement.parentNode);
   unmount();
   expect(ref.current).toBe(null);
 });
 
-test('handles changed ref', () => {
+test('handles changed ref', async () => {
   const ref1 = jest.fn();
-  const { getByTestId, rerender } = render(
+  const { rerender } = render(
     <DocumentPortal ref={ref1}>
       <dialog data-testid="dialog">Hello!</dialog>
     </DocumentPortal>
@@ -98,5 +105,6 @@ test('handles changed ref', () => {
     </DocumentPortal>
   );
   expect(ref1).toHaveBeenLastCalledWith(null);
-  expect(ref2.current).toBe(getByTestId('dialog').parentNode);
+  const dialogElement = await screen.findByTestId('dialog');
+  expect(ref2.current).toBe(dialogElement.parentNode);
 });
