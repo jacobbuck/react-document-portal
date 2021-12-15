@@ -1,17 +1,17 @@
 import PropTypes from 'prop-types';
 import { forwardRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import useIsomorphicLayoutEffect from 'use-isomorphic-layout-effect';
 import updateRef from './updateRef';
+import useBrowserLayoutEffect from './useBrowserLayoutEffect';
 
 const DocumentPortal = forwardRef(({ as = 'div', children = null }, ref) => {
   const [node, setNode] = useState(null);
 
-  useIsomorphicLayoutEffect(() => {
+  useBrowserLayoutEffect(() => {
     setNode(document.createElement(as));
   }, [as]);
 
-  useIsomorphicLayoutEffect(() => {
+  useBrowserLayoutEffect(() => {
     if (node) {
       document.body.appendChild(node);
       return () => {
@@ -20,7 +20,7 @@ const DocumentPortal = forwardRef(({ as = 'div', children = null }, ref) => {
     }
   }, [node]);
 
-  useIsomorphicLayoutEffect(() => {
+  useBrowserLayoutEffect(() => {
     if (ref) {
       updateRef(ref, node);
       return () => {

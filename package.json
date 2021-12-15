@@ -35,8 +35,7 @@
   },
   "homepage": "https://github.com/jacobbuck/react-document-portal#readme",
   "dependencies": {
-    "prop-types": "^15.7.2",
-    "use-isomorphic-layout-effect": "^1.1.0"
+    "prop-types": "^15.7.2"
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",
