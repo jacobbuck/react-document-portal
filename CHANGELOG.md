@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- Updated [prop-types](https://www.npmjs.com/package/prop-types) dependency to v15.8.1.
+
 ## v1.2.0 - 2021-12-15
 
 ### Added
@@ -8,7 +14,7 @@
 
 ### Changed
 
-- Updated peer-dependencies to support React v16.6.0 and newer.
+- Updated [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) peer-dependencies to support v17 and v18.
 
 ### Removed
 
