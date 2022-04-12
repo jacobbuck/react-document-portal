@@ -15,11 +15,6 @@ export default {
       sourcemap: true,
     },
   ],
-  external: [
-    'prop-types',
-    'react',
-    'react-dom',
-    'use-isomorphic-layout-effect',
-  ],
+  external: ['prop-types', 'react', 'react-dom'],
   plugins: [babel({ babelHelpers: 'bundled' })],
 };
